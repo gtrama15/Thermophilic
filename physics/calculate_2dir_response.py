@@ -160,7 +160,7 @@ def snapshot_response(row, W1, W3, gamma, delta_A, delta_B, t_wait, T1):
     for e in exciton_names:
         for ep in exciton_names:
             orient = orientational_factor(e_dipole[e], e_dipole[ep])
-            R_rephasing += orient * lorentzian(W1, e_energy[e], gamma, sign=-1) \
+            R_rephasing += orient * lorentzian(-W1, e_energy[e], gamma, sign=-1) \
                 * lorentzian(W3, e_energy[ep], gamma, sign=+1)
             R_nonrephasing += orient * lorentzian(W1, e_energy[e], gamma, sign=+1) \
                 * lorentzian(W3, e_energy[ep], gamma, sign=+1)
@@ -168,7 +168,7 @@ def snapshot_response(row, W1, W3, gamma, delta_A, delta_B, t_wait, T1):
     # ---------------- SE: diagonal in e (secular approx) ----------------
     for e in exciton_names:
         orient = orientational_factor(e_dipole[e], e_dipole[e])
-        R_rephasing += pop_decay * orient * lorentzian(W1, e_energy[e], gamma, sign=-1) \
+        R_rephasing += pop_decay * orient * lorentzian(-W1, e_energy[e], gamma, sign=-1) \
             * lorentzian(W3, e_energy[e], gamma, sign=+1)
         R_nonrephasing += pop_decay * orient * lorentzian(W1, e_energy[e], gamma, sign=+1) \
             * lorentzian(W3, e_energy[e], gamma, sign=+1)
@@ -182,7 +182,7 @@ def snapshot_response(row, W1, W3, gamma, delta_A, delta_B, t_wait, T1):
             mu_ef = two_exciton_dipole(c_eA, c_eB, mu_A_vec, mu_B_vec, c_fAA, c_fAB, c_fBB)
             omega_fe = f_energy - e_energy[e]
             orient = orientational_factor(e_dipole[e], mu_ef)
-            R_rephasing -= pop_decay * orient * lorentzian(W1, e_energy[e], gamma, sign=-1) \
+            R_rephasing -= pop_decay * orient * lorentzian(-W1, e_energy[e], gamma, sign=-1) \
                 * lorentzian(W3, omega_fe, gamma, sign=+1)
             R_nonrephasing -= pop_decay * orient * lorentzian(W1, e_energy[e], gamma, sign=+1) \
                 * lorentzian(W3, omega_fe, gamma, sign=+1)
